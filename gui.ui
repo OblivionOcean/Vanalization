@@ -25,7 +25,7 @@
     </property>
     <property name="font">
      <font>
-      <family>YuMincho +36p Kana</family>
+      <family>Weibei SC</family>
       <pointsize>14</pointsize>
       <italic>false</italic>
       <bold>true</bold>

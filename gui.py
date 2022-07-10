@@ -8,15 +8,9 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QLabel, QMainWindow,
-    QPushButton, QSizePolicy, QWidget)
+from PySide6.QtCore import QCoreApplication, QMetaObject, QRect
+from PySide6.QtGui import QFont
+from PySide6.QtWidgets import QComboBox, QLabel, QPushButton, QWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -40,7 +34,7 @@ class Ui_MainWindow(object):
         self.comboBox.setObjectName(u"comboBox")
         self.comboBox.setGeometry(QRect(70, 60, 101, 31))
         font = QFont()
-        font.setFamilies([u"YuMincho +36p Kana"])
+        font.setFamilies([u"Weibei SC"])
         font.setPointSize(14)
         font.setBold(True)
         font.setItalic(False)
@@ -84,7 +78,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Van能转换器", None))
         self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"MP4", None))
         self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"MP3", None))
         self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"FLV", None))
