@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'gui.ui'
-##
-## Created by: Qt User Interface Compiler version 6.3.0
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
 from PySide6.QtCore import QCoreApplication, QMetaObject, QRect
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QComboBox, QLabel, QPushButton, QWidget
@@ -95,5 +85,3 @@ class Ui_MainWindow(object):
         self.TransNow.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u8f6c\u6362", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Van\u80fd\u8f6c\u6362\u5668", None))
         self.ChooseFile.setText(QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u6587\u4ef6", None))
-    # retranslateUi
-
