@@ -1,28 +1,47 @@
 import platform
 import os
-import shutil
 import requests
-import py7zr
 
-print("**IT'S AN FFMPEG INSTALLER WHICH WILL APPARENTLY INSTALL FFMPEG AUTOMATICALLY.**")
-print("**IT'S A REPLACEMENT OF MY BABYMODE IN OTHER PROGRAMS.**")
+pm = platform.machine()
+
+def linuxInstall():
+    name = f"ffmpeg-{pm}.tar.xz"
+    if pm.capitalize() in ("AMD64","ARM64","I686","ARMHF","ARMEL"):
+        file = requests.get(f"https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-{pm}-static.tar.xz").content
+        with open(name, "wb") as f:
+            f.write(file)
+            os.system(f"tar xvJf {name}")
+            print("We have downloaded the suitable version of FFMpeg for you in the same folder. Please check it out")
+        for root, dirs, files in os.walk("."):
+            if "ffmpeg" in dirs:
+                os.chdir(dirs)
+        with open(".ffmpeg_profile" ,"wt") as x:
+            x.write(f"export PATH={os.path.abspath('.')}:$PATH")
+    else:
+        print("Unable to Install FFMpeg for You.")
+        raise SystemError
+        
+
+print("**It's a USELESS FFMpeg installer.**")
+
 pf = platform.system()
-desktop = os.path.expanduser("~/Desktop")
-if pf == 'Windows':
-    sth = requests.get('https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z')
-    with open('ffmpeg-git-full.7z', 'w') as f:
-        f.write(sth.content)
-    with py7zr.SevenZipFile('ffmpeg-git-full.7z', mode='r') as z:
-        z.extractall(path='tmp')
-    shutil.copy('', desktop+"/ffmpeg安装目录")
-    
-elif pf == 'Darwin':
-    print("**PLEASE BE SURE BREW IS INSTALLED.**")
+
+if pf == 'Darwin':
+    print("System: Darwin")
     try:
+        print("Please wait")
         os.system("brew install ffmpeg")
-        print("DONE!!!")
-        input("**PRESS ENTER TO EXIT!**")
+        print("Successfully installed FFMpeg to your Mac.")
     except:
-        print("**SEEMS LIKE STH'S WRONG?**")
-        print("**WOW, YOU SHOULD CHECK YOUR BREW, IF YOU HAVEN'T INSTALL BREW, INSTALL ONE in (https://brew.sh/).**")
-        input("**PRESS ENTER TO EXIT!**")
+        print("Something's WRONG?")
+        print("Wow, you should check your brew, if you haven't install brew, install one in (https://brew.sh/).")
+elif pf == 'Linux':
+    try:
+        print("System: Linux")
+        linuxInstall()
+    except:
+        print("A problem occured when running this program. Please try to install ffmpeg manually.")
+elif pf == 'Windows':
+    pass
+
+input("**Press [Enter] to EXIT!**")

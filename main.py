@@ -1,4 +1,4 @@
-import sys
+import sys, os
 import pathlib
 from pydub import AudioSegment
 from gui import Ui_MainWindow
@@ -15,9 +15,20 @@ loadtext = """食用说明:
 3. 支持视频转视频，视频转音频，音频转音频。
 4. 请勿作死尝试将音频转成视频。
 5. 未在Windows/Linux上经过测试，理论上支持这两个平台。
-6. 有bug可反馈至作者博客: https://chuishen.cf/。
+6. 有bug可反馈至作者博客: https://chuishen.xyz/。
 7. 请通过源代码安装的用户自行安装ffmpeg。地址: https://ffmpeg.org/。
 8. 支持导出的文件格式有: MP3, FLAC, WAV, OGG, WMA, M4A, MP4, FLV, MOV, WMV, AVI等，支持导入的文件格式更加多样，且未来将支持更多导出格式。"""
+
+x = 0
+
+try:
+    os.system("ffmpeg")
+except:
+    try:
+        os.system("source .ffmpeg_profile")
+        os.system("ffmpeg")
+    except:
+        x = 1
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -28,6 +39,8 @@ class MainWindow(QMainWindow):
         self.ui.ChooseFile.clicked.connect(self.choicebox)
         self.filename = None
         self.func = None
+        if x:
+            QMessageBox.information(self, "警告", "疑似未安装FFMpeg，这可能导致程序无法正常运行，请尝试使用ffmpeg-install.py安装。")
         QMessageBox.information(self, "食用说明", loadtext, QMessageBox.Ok)
 
     def fext(self, f):
